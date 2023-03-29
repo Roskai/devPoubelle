@@ -2,7 +2,7 @@
 
 long Fibonacci( unsigned long n){
   unsigned long nbr1 = 0, nbr2 = 1, suivant, i;
-  for (i = 0; i < 183000; i++)
+  for (i = 0; i < n; i++)
   {
     if (i <= 1)
       suivant = i;

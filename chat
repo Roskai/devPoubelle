@@ -1,0 +1,143 @@
+org 100h
+
+			; set date and time
+mov ah, 0
+int 1Ah
+mov time, dx
+mov date, cx
+
+			; set cursor upper left corner
+mov ah, 2
+mov bh, 0
+mov dh, 0
+mov dl, 0
+int 10h
+
+			; clear the screen
+mov ax, 0600h
+mov bh, 07h
+mov cx, 0
+mov dx, 184Fh
+int 10h
+
+; get user's name
+CALL get_user_name
+
+			; loop to show messages
+start_loop:
+			; display user's name
+mov ax, 0B800h
+mov es, ax
+mov di, 0
+mov si, offset user_name
+call string_print
+
+			; get user's message
+call get_message
+
+			; display user's message
+mov ax, 0B800h
+mov es, ax
+mov di, 20
+mov si, offset message
+call string_print
+
+			; update current time and date
+mov ah, 0
+int 1Ah
+mov time, dx
+mov date, cx
+
+			; display time and date
+mov ax, 0B800
+mov es, ax
+mov di, 40
+mov ax, time
+call int_string_print
+mov ax, 0B800
+mov es, ax
+mov di, 50
+mov ax, date
+call int_string_print
+
+			; show the list of users and the current message
+call get_users
+call show_message
+
+			; wait for enter to be pressed
+wait_for_enter:
+			; get key
+mov ah, 01
+int 21h
+cmp al, 0Dh
+je start_loop
+jmp wait_for_enter
+
+get_user_name:
+			; get user name
+mov ah, 0Ah
+mov dx, offset user_name
+int 21h
+
+ret 
+
+get_message:
+			; get message
+mov ah, 0Ah
+mov dx, offset message
+int 21h
+
+ret
+
+string_print:
+			; print a string
+mov al, [si] 
+Loop:
+			; if end of string, exit
+cmp al, '$'
+je End_loop
+			; write a character in the screen
+mov [es:di], ax
+inc di 
+inc si
+mov al, [si]
+jmp Loop
+End_loop:
+ret
+
+int_string_print:
+			; print an integer
+mov cl, 0Ah
+			; get each digit
+Divide:
+mov bx, 0010h
+div bx
+add dl, 30h
+			; write digit in the screen
+mov [es:di], dx
+inc di 
+			; cicle until all digits are shown
+or ax, ax
+jne Divide
+
+ret
+
+get_users:
+			; get list of users 
+mov ah, 03h
+mov bx, 00h
+mov cx, 01h
+mov dx, offset users
+int 21h
+
+ret
+
+show_message:
+			; show message to all users
+mov ah, 09h
+mov dx, offset message
+int 21h
+
+ret
+
+END

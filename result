@@ -1,0 +1,16 @@
+debugfs:  stat <10616847>
+Inode: 10616847   Type: regular    Mode:  0644   Flags: 0x80000
+Generation: 2140481371    Version: 0x00000000:00000001
+User:  1000   Group:  1000   Project:     0   Size: 22
+File ACL: 0
+Links: 1   Blockcount: 8
+Fragment:  Address: 0    Number: 0    Size: 0
+ ctime: 0x639844ad:ba5e7540 -- Tue Dec 13 10:23:57 2022
+ atime: 0x6398449c:8117b71c -- Tue Dec 13 10:23:40 2022
+ mtime: 0x639844ad:ba5e7540 -- Tue Dec 13 10:23:57 2022
+crtime: 0x6398449c:80239304 -- Tue Dec 13 10:23:40 2022
+Size of extra inode fields: 32
+Inode checksum: 0xd7a64d73
+EXTENTS:
+(0):102526868
+debugfs:  

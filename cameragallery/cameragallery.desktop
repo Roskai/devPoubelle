@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Camera Gallery
+Icon=icon-launcher-camera
+X-Nemo-Application-Type=silica-qt5
+Exec=cameragallery
