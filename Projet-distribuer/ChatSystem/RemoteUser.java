@@ -1,33 +1,33 @@
 package ChatSystem;
 
 import java.net.InetAddress;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-/*
- * 
- *  This class represents a remote user of the Chat System.
- * 
+/**
+ * Cette classe représente un utilisateur distant du système de chat.
  */
 public class RemoteUser {
     /**
-     * The nickname of the user
+     * Le surnom de l'utilisateur.
      */
-    private String nickname;
-    /**
-     * The ip address of the user
-     */
-    private InetAddress address;
-    /**
-     * List of all the remote users
-     */
-    private static List<RemoteUser> remoteUsers = new ArrayList<>();
+    private final String nickname;
 
     /**
-     * Constructor 
-     * 
-     * @param nickname The nickname of the user
-     * @param address The ip address of the user
+     * L'adresse IP de l'utilisateur.
+     */
+    private final InetAddress address;
+
+    /**
+     * Liste de tous les utilisateurs distants.
+     */
+    private static List<RemoteUser> remoteUsers = new CopyOnWriteArrayList<>();
+
+    /**
+     * Constructeur de la classe RemoteUser.
+     *
+     * @param nickname le surnom de l'utilisateur.
+     * @param address l'adresse IP de l'utilisateur.
      */
     public RemoteUser(String nickname, InetAddress address) {
         this.nickname = nickname;
@@ -36,38 +36,55 @@ public class RemoteUser {
     }
 
     /**
-     * Get the nickname of the user
-     * 
-     * @return The nickname of the user
+     * Obtient le surnom de l'utilisateur.
+     *
+     * @return Le surnom de l'utilisateur.
      */
     public String getNickname() {
         return nickname;
     }
 
-
     /**
-     * Get the ip address of the user
-     * 
-     * @return The ip address of the user
+     * Obtient l'adresse IP de l'utilisateur.
+     *
+     * @return L'adresse IP de l'utilisateur.
      */
     public InetAddress getAddress() {
         return address;
     }
 
     /**
-     * Remove a remote user from the list
-     * 
-     * @param remoteUser The user to remove
+     * Supprime un utilisateur distant de la liste.
+     *
+     * @param remoteUser L'utilisateur à supprimer.
      */
     public static void removeRemoteUser(RemoteUser remoteUser) {
         remoteUsers.remove(remoteUser);
     }
+
     /**
-     * Get the list of all the remote users
-     * 
-     * @return The list of all the remote users
+     * Obtient la liste de tous les utilisateurs distants.
+     *
+     * @return La liste de tous les utilisateurs distants.
      */
     public static List<RemoteUser> getRemoteUsers() {
         return remoteUsers;
+    }
+
+    /**
+     * Obtient une liste des utilisateurs distants qui ont le même surnom et la même adresse IP que l'utilisateur donné.
+     * Cette méthode crée une copie de la liste pour éviter les conflits lors de la suppression d'un élément.
+     *
+     * @param remoteUser L'utilisateur à rechercher.
+     * @return La liste des utilisateurs distants qui ont le même surnom et la même adresse IP que l'utilisateur donné.
+     */
+    public static List<RemoteUser> getListRemoteUsers(RemoteUser remoteUser) {
+        List<RemoteUser> result = new CopyOnWriteArrayList<>();
+        for (RemoteUser user : remoteUsers) {
+            if (user.getNickname().equals(remoteUser.getNickname()) && user.getAddress().equals(remoteUser.getAddress())) {
+                result.add(user);
+            }
+        }
+        return result;
     }
 }

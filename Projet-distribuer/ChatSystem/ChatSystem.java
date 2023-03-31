@@ -10,7 +10,6 @@ public class ChatSystem {
     //private  ChatNI CNI;
     private WelcomeInterface welcomeInterface;
 
-
     /**
      *Constructs a new ChatSystem instance. This constructor is private to prevent direct instantiation.
      */
@@ -26,20 +25,19 @@ public class ChatSystem {
         private static final ChatSystem INSTANCE = new ChatSystem();
     }
 
-    
     /**
      * Returns the single instance of ChatSystem.
      * @return the ChatSystem instance
      */
     public static ChatSystem getInstance() {
-        System.out.println("CS : "+SingletonHolder.INSTANCE);
+        System.out.println("CS : " + SingletonHolder.INSTANCE);
         return SingletonHolder.INSTANCE;
     }
 
-    
     public static void main(String[] args) {
-        new ConnectionInterface();   
+        new ConnectionInterface();
     }
+
     /**
      * @return the userNickname
      */
@@ -79,6 +77,7 @@ public class ChatSystem {
             welcomeInterface.emptyRemoteUserJList();
             for (final RemoteUser remoteUser : RemoteUser.getRemoteUsers()) {
                 welcomeInterface.addRemoteUserToListModel(remoteUser);
+                System.out.println("Remote user  :"+remoteUser.getNickname()+" is in ! ");
             }
 
         } catch (final Exception e) {
@@ -117,9 +116,9 @@ public class ChatSystem {
      * @return true if the nickname is valid, false otherwise
      */
     public boolean verificationNickname(String nickname) {
-        System.out.println("Le nickname est \"" + nickname+"\"");
+        System.out.println("Le nickname est \"" + nickname + "\"");
         boolean valid = true;
-        if (nickname.isBlank()||nickname.isEmpty()) {
+        if (nickname.isBlank() || nickname.isEmpty()) {
             for (int i = 0; i < nickname.length(); i++) {
                 final char c = nickname.charAt(i);
                 if (!Character.isLetterOrDigit(c)) {
@@ -127,7 +126,7 @@ public class ChatSystem {
                     break;
                 }
             }
-            valid=false;
+            valid = false;
         }
         return valid;
 
