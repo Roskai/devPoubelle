@@ -1,0 +1,43 @@
+# depslib dependency file v1.0
+1639420621 source:f:\cours\s3\progobjetavancée\tp8bis\graphiquecompose.cpp
+	"GraphiqueCompose.h"
+
+1639397762 f:\cours\s3\progobjetavancée\tp8bis\graphiquecompose.h
+	"Graphique.h"
+	<set>
+
+1639419897 f:\cours\s3\progobjetavancée\tp8bis\graphique.h
+	<iostream>
+	"Terminal.h"
+
+1639422188 source:f:\cours\s3\progobjetavancée\tp8bis\main.cpp
+	<iostream>
+	"Terminal.h"
+	"Graphique.h"
+	"GraphiqueCompose.h"
+	"Point.h"
+	"GraphiqueSimple.h"
+
+1639398627 source:f:\cours\s3\progobjetavancée\tp8bis\graphique.cpp
+	"Graphique.h"
+
+1639421909 source:f:\cours\s3\progobjetavancée\tp8bis\graphiquesimple.cpp
+	"GraphiqueSimple.h"
+
+1639421909 f:\cours\s3\progobjetavancée\tp8bis\graphiquesimple.h
+	<iostream>
+	"Graphique.h"
+
+1639421909 source:f:\cours\s3\progobjetavancée\tp8bis\point.cpp
+	"Point.h"
+
+1639398753 f:\cours\s3\progobjetavancée\tp8bis\point.h
+	<iostream>
+	"GraphiqueSimple.h"
+
+1639426858 f:\cours\s3\progobjetavancée\tp8bis\terminal.h
+	<iostream>
+	<stdlib.h>
+	<unistd.h>
+	<time.h>
+
